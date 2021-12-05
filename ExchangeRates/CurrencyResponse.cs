@@ -15,7 +15,12 @@ namespace ExchangeRates
         public Dictionary<string,double> rates { get; set; }
 
         public override string ToString()
-        {
+        {  
+            if(!success)
+            {
+                return "No currency information available, please check your request";
+            }
+            
             string str = "Date: " + date + "\n";
             foreach(var item in rates)
             {
