@@ -14,8 +14,10 @@ namespace ExchangeRates
 
         private string BuildUrl(string date, string[] currencies)
         {
-            var builder = new UriBuilder(URL + date);
-            builder.Port = -1;
+            var builder = new UriBuilder(URL + date)
+            {
+                Port = -1
+            };
             var query = System.Web.HttpUtility.ParseQueryString(builder.Query);
             query["access_key"] = key;
 
