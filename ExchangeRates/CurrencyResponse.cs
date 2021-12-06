@@ -2,27 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ExchangeRates
 {
+
     internal class CurrencyResponse
     {
-        public bool success { get; set; }
-        public int timestamp { get; set; }
-        public string @base { get; set; }
-        public string date { get; set; }
-        public Dictionary<string,double> rates { get; set; }
+        [JsonPropertyName("success")]
+        public bool Success { get; set; }
 
-        public override string ToString()
+        [JsonPropertyName("timestamp")]
+        public int TimeStamp { get; set; }
+
+        [JsonPropertyName("base")]
+        public string Base { get; set; }
+
+        [JsonPropertyName("date")]
+        public string Date { get; set; }
+
+        [JsonPropertyName("rates")]
+        public Dictionary<string,double> Rates { get; set; }
+
+        public string FormatForConsole()
         {  
-            if(!success)
+            if(!Success)
             {
                 return "No currency information available, please check your request";
             }
             
-            string str = "Date: " + date + "\n";
-            foreach(var item in rates)
+            string str = "Date: " + Date + "\n";
+            foreach(var item in Rates)
             {
                 str+=item.Key + ": " + item.Value + "\n";
             }

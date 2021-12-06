@@ -34,8 +34,6 @@ namespace ExchangeRates
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(BuildUrl(date, currencies));
 
-            //client.DefaultRequestHeaders.Accept.Add(
-            //new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
         }
         private CurrencyResponse? GetRates(string date, string[] currencies)
@@ -59,13 +57,7 @@ namespace ExchangeRates
             }
         }
 
-        public CurrencyResponse? GetLatestRates(string[] currencies)
-        {
-            return GetRates("latest", currencies);
-        }
-        public CurrencyResponse? GetRatesByDate(string date ,string[] currencies)
-        {
-            return GetRates(date, currencies);
-        }
+        public CurrencyResponse? GetLatestRates(string[] currencies) => GetRates("latest", currencies);
+        public CurrencyResponse? GetRatesByDate(string date ,string[] currencies)=> GetRates(date, currencies);
     }
 }
